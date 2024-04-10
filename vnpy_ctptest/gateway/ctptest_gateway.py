@@ -163,6 +163,7 @@ class CtptestGateway(BaseGateway):
 
     def connect(self, setting: dict) -> None:
         """连接交易接口"""
+        print(setting)
         userid: str = setting["用户名"]
         password: str = setting["密码"]
         brokerid: str = setting["经纪商代码"]
