@@ -24,7 +24,7 @@ def main():
     print('hi')
     gateway.connect(default_setting)
     print('kitten')
-    req = SubscribeRequest()
+    # req = SubscribeRequest()
 
 
 if __name__ == "__main__":

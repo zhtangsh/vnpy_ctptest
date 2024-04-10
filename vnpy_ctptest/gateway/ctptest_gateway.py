@@ -758,7 +758,7 @@ class CtptestTdApi(TdApi):
             "AuthCode": self.auth_code,
             "AppID": self.appid
         }
-
+        print('authenticate')
         self.reqid += 1
         self.reqAuthenticate(ctp_req, self.reqid)
 
