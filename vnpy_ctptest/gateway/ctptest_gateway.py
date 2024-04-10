@@ -64,7 +64,6 @@ from ..api import (
     THOST_FTDC_AF_Delete
 )
 
-
 # 委托状态映射
 STATUS_CTP2VT: dict[str, Status] = {
     THOST_FTDC_OAS_Submitted: Status.SUBMITTING,
@@ -128,8 +127,8 @@ OPTIONTYPE_CTP2VT: dict[str, OptionType] = {
 }
 
 # 其他常量
-MAX_FLOAT = sys.float_info.max                  # 浮点数极限值
-CHINA_TZ = ZoneInfo("Asia/Shanghai")       # 中国时区
+MAX_FLOAT = sys.float_info.max  # 浮点数极限值
+CHINA_TZ = ZoneInfo("Asia/Shanghai")  # 中国时区
 
 # 合约数据全局缓存字典
 symbol_contract_map: dict[str, ContractData] = {}
@@ -173,14 +172,14 @@ class CtptestGateway(BaseGateway):
         auth_code: str = setting["授权编码"]
 
         if (
-            (not td_address.startswith("tcp://"))
-            and (not td_address.startswith("ssl://"))
+                (not td_address.startswith("tcp://"))
+                and (not td_address.startswith("ssl://"))
         ):
             td_address = "tcp://" + td_address
 
         if (
-            (not md_address.startswith("tcp://"))
-            and (not md_address.startswith("ssl://"))
+                (not md_address.startswith("tcp://"))
+                and (not md_address.startswith("ssl://"))
         ):
             md_address = "tcp://" + md_address
         self.td_api.connect(td_address, userid, password, brokerid, auth_code, appid)
@@ -270,11 +269,13 @@ class CtptestMdApi(MdApi):
 
     def onFrontConnected(self) -> None:
         """服务器连接成功回报"""
+        print("行情服务器连接成功")
         self.gateway.write_log("行情服务器连接成功")
         self.login()
 
     def onFrontDisconnected(self, reason: int) -> None:
         """服务器连接断开回报"""
+        print(f"行情服务器连接断开，原因{reason}")
         self.login_status = False
         self.gateway.write_log(f"行情服务器连接断开，原因{reason}")
 
@@ -317,7 +318,7 @@ class CtptestMdApi(MdApi):
         else:
             date_str: str = data["ActionDay"]
 
-        timestamp: str = f"{date_str} {data['UpdateTime']}.{int(data['UpdateMillisec']/100)}"
+        timestamp: str = f"{date_str} {data['UpdateTime']}.{int(data['UpdateMillisec'] / 100)}"
         dt: datetime = datetime.strptime(timestamp, "%Y%m%d %H:%M:%S.%f")
         dt: datetime = dt.replace(tzinfo=CHINA_TZ)
 
@@ -445,6 +446,7 @@ class CtptestTdApi(TdApi):
 
     def onFrontConnected(self) -> None:
         """服务器连接成功回报"""
+        print("交易服务器连接成功")
         self.gateway.write_log("交易服务器连接成功")
 
         if self.auth_code:
@@ -454,11 +456,13 @@ class CtptestTdApi(TdApi):
 
     def onFrontDisconnected(self, reason: int) -> None:
         """服务器连接断开回报"""
+        print(f"交易服务器连接断开，原因{reason}"))
         self.login_status = False
         self.gateway.write_log(f"交易服务器连接断开，原因{reason}")
 
     def onRspAuthenticate(self, data: dict, error: dict, reqid: int, last: bool) -> None:
         """用户授权验证回报"""
+        print(error)
         if not error['ErrorID']:
             self.auth_status = True
             self.gateway.write_log("交易服务器授权验证成功")
@@ -720,13 +724,13 @@ class CtptestTdApi(TdApi):
             self.gateway.write_error("询价请求发送失败", error)
 
     def connect(
-        self,
-        address: str,
-        userid: str,
-        password: str,
-        brokerid: int,
-        auth_code: str,
-        appid: str
+            self,
+            address: str,
+            userid: str,
+            password: str,
+            brokerid: int,
+            auth_code: str,
+            appid: str
     ) -> None:
         """连接服务器"""
         self.userid = userid
