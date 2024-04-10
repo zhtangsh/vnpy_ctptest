@@ -735,6 +735,7 @@ class CtptestTdApi(TdApi):
         self.appid = appid
 
         if not self.connect_status:
+            print('connect')
             path: Path = get_folder_path(self.gateway_name.lower())
             self.createFtdcTraderApi((str(path) + "\\Td").encode("GBK"))
 
@@ -745,6 +746,7 @@ class CtptestTdApi(TdApi):
             self.init()
 
             self.connect_status = True
+            print('done')
         else:
             self.authenticate()
 
