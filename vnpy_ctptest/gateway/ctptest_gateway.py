@@ -183,11 +183,10 @@ class CtptestGateway(BaseGateway):
             and (not md_address.startswith("ssl://"))
         ):
             md_address = "tcp://" + md_address
-        print('hi')
         self.td_api.connect(td_address, userid, password, brokerid, auth_code, appid)
         self.md_api.connect(md_address, userid, password, brokerid)
 
-        self.init_query()
+        # self.init_query()
 
     def subscribe(self, req: SubscribeRequest) -> None:
         """订阅行情"""
@@ -382,6 +381,7 @@ class CtptestMdApi(MdApi):
             self.init()
 
             self.connect_status = True
+            print('md api connect')
 
     def login(self) -> None:
         """用户登录"""
@@ -734,10 +734,8 @@ class CtptestTdApi(TdApi):
         self.brokerid = brokerid
         self.auth_code = auth_code
         self.appid = appid
-        print('connect')
 
         if not self.connect_status:
-            print('connect')
             path: Path = get_folder_path(self.gateway_name.lower())
             self.createFtdcTraderApi((str(path) + "\\Td").encode("GBK"))
 
@@ -748,7 +746,7 @@ class CtptestTdApi(TdApi):
             self.init()
 
             self.connect_status = True
-            print('done')
+            print('td api connect')
         else:
             self.authenticate()
 

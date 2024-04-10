@@ -21,10 +21,7 @@ def main():
         "产品名称": "simnow_client_test",
         "授权编码": "0000000000000000"
     }
-    print('hi')
-    print(gateway)
     gateway.connect(default_setting)
-    print('kitten')
     # req = SubscribeRequest()
 
 
