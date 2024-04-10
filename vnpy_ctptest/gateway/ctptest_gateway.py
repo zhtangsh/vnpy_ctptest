@@ -456,7 +456,7 @@ class CtptestTdApi(TdApi):
 
     def onFrontDisconnected(self, reason: int) -> None:
         """服务器连接断开回报"""
-        print(f"交易服务器连接断开，原因{reason}"))
+        print(f"交易服务器连接断开，原因{reason}")
         self.login_status = False
         self.gateway.write_log(f"交易服务器连接断开，原因{reason}")
 
