@@ -182,7 +182,7 @@ class CtptestGateway(BaseGateway):
             and (not md_address.startswith("ssl://"))
         ):
             md_address = "tcp://" + md_address
-
+        print('hi')
         self.td_api.connect(td_address, userid, password, brokerid, auth_code, appid)
         self.md_api.connect(md_address, userid, password, brokerid)
 
@@ -733,6 +733,7 @@ class CtptestTdApi(TdApi):
         self.brokerid = brokerid
         self.auth_code = auth_code
         self.appid = appid
+        print('connect')
 
         if not self.connect_status:
             print('connect')
