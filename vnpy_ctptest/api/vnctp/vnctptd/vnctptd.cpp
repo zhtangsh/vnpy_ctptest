@@ -11721,26 +11721,6 @@ int TdApi::reqQryInvestorCommoditySPMMMargin(const dict& req, int reqid)
 	return i;
 };
 
-int TdApi::reqQryInvestorCommodityGroupSPMMMargin(const dict& req, int reqid)
-{
-	CThostFtdcQryInvestorCommodityGroupSPMMMarginField myreq = CThostFtdcQryInvestorCommodityGroupSPMMMarginField();
-	memset(&myreq, 0, sizeof(myreq));
-	getString(req, "BrokerID", myreq.BrokerID);
-	getString(req, "InvestorID", myreq.InvestorID);
-	getString(req, "CommodityGroupID", myreq.CommodityGroupID);
-	int i = this->api->ReqQryInvestorCommodityGroupSPMMMargin(&myreq, reqid);
-	return i;
-};
-
-int TdApi::reqQrySPMMInstParam(const dict& req, int reqid)
-{
-	CThostFtdcQrySPMMInstParamField myreq = CThostFtdcQrySPMMInstParamField();
-	memset(&myreq, 0, sizeof(myreq));
-	getString(req, "InstrumentID", myreq.InstrumentID);
-	int i = this->api->ReqQrySPMMInstParam(&myreq, reqid);
-	return i;
-};
-
 int TdApi::reqQrySPMMProductParam(const dict& req, int reqid)
 {
 	CThostFtdcQrySPMMProductParamField myreq = CThostFtdcQrySPMMProductParamField();
@@ -13744,8 +13724,6 @@ PYBIND11_MODULE(vnctptd, m)
 		.def("reqQrySPBMInvestorPortfDef", &TdApi::reqQrySPBMInvestorPortfDef)
 		.def("reqQryInvestorPortfMarginRatio", &TdApi::reqQryInvestorPortfMarginRatio)
 		.def("reqQryInvestorProdSPBMDetail", &TdApi::reqQryInvestorProdSPBMDetail)
-		.def("reqQryInvestorCommodityGroupSPMMMargin", &TdApi::reqQryInvestorCommodityGroupSPMMMargin)
-		.def("reqQrySPMMInstParam", &TdApi::reqQrySPMMInstParam)
 		.def("onFrontConnected", &TdApi::onFrontConnected)
 		.def("onFrontDisconnected", &TdApi::onFrontDisconnected)
 		.def("onHeartBeatWarning", &TdApi::onHeartBeatWarning)

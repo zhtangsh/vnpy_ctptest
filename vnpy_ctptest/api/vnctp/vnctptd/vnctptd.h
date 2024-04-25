@@ -1509,7 +1509,4 @@ public:
 
 	int reqQryInvestorProdSPBMDetail(const dict& req, int reqid);
 
-	int reqQryInvestorCommodityGroupSPMMMargin(const dict& req, int reqid);
-
-	int reqQrySPMMInstParam(const dict& req, int reqid);
 };
