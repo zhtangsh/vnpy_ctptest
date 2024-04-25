@@ -922,13 +922,6 @@ public:
 
 	void processRspQryInvestorProdRCAMSMargin(Task* task);
 
-	void processRspQryRULEInstrParameter(Task* task);
-
-	void processRspQryRULEIntraParameter(Task* task);
-
-	void processRspQryRULEInterParameter(Task* task);
-
-	void processRspQryInvestorProdRULEMargin(Task* task);
 
     //-------------------------------------------------------------------------------------
     //data：回调函数的数据字典
