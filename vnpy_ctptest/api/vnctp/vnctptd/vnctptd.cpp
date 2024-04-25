@@ -10795,36 +10795,6 @@ int TdApi::reqQryInvestorProdSPBMDetail(const dict& req, int reqid)
 };
 
 
-int TdApi::reqQrySPMMProductParam(const dict& req, int reqid)
-{
-	CThostFtdcQrySPMMProductParamField myreq = CThostFtdcQrySPMMProductParamField();
-	memset(&myreq, 0, sizeof(myreq));
-	getString(req, "ProductID", myreq.ProductID);
-	int i = this->api->ReqQrySPMMProductParam(&myreq, reqid);
-	return i;
-};
-
-int TdApi::reqQryRCAMSInterParameter(const dict& req, int reqid)
-{
-	CThostFtdcQryRCAMSInterParameterField myreq = CThostFtdcQryRCAMSInterParameterField();
-	memset(&myreq, 0, sizeof(myreq));
-	getString(req, "ProductGroupID", myreq.ProductGroupID);
-	getString(req, "CombProduct1", myreq.CombProduct1);
-	getString(req, "CombProduct2", myreq.CombProduct2);
-	int i = this->api->ReqQryRCAMSInterParameter(&myreq, reqid);
-	return i;
-};
-
-int TdApi::reqQryRCAMSShortOptAdjustParam(const dict& req, int reqid)
-{
-	CThostFtdcQryRCAMSShortOptAdjustParamField myreq = CThostFtdcQryRCAMSShortOptAdjustParamField();
-	memset(&myreq, 0, sizeof(myreq));
-	getString(req, "CombProductID", myreq.CombProductID);
-	int i = this->api->ReqQryRCAMSShortOptAdjustParam(&myreq, reqid);
-	return i;
-};
-
-
 ///-------------------------------------------------------------------------------------
 ///Boost.Python·â×°
 ///-------------------------------------------------------------------------------------
