@@ -1,6 +1,6 @@
 from vnpy.event import EventEngine
 from vnpy.trader.engine import MainEngine
-from vnpy.trader.object import  *
+from vnpy.trader.object import *
 
 from vnpy_ctptest import CtptestGateway
 
