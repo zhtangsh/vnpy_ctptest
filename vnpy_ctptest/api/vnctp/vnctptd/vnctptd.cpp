@@ -2642,48 +2642,6 @@ void TdApi::OnRspQrySPMMProductParam(CThostFtdcSPMMProductParamField* pSPMMProdu
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspQryRCAMSIntraParameter(CThostFtdcRCAMSIntraParameterField* pRCAMSIntraParameter, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
-{
-	Task task = Task();
-	task.task_name = ONRSPQRYRCAMSINTRAPARAMETER;
-	if (pRCAMSIntraParameter)
-	{
-		CThostFtdcRCAMSIntraParameterField* task_data = new CThostFtdcRCAMSIntraParameterField();
-		*task_data = *pRCAMSIntraParameter;
-		task.task_data = task_data;
-	}
-	if (pRspInfo)
-	{
-		CThostFtdcRspInfoField* task_error = new CThostFtdcRspInfoField();
-		*task_error = *pRspInfo;
-		task.task_error = task_error;
-	}
-	task.task_id = nRequestID;
-	task.task_last = bIsLast;
-	this->task_queue.push(task);
-};
-
-void TdApi::OnRspQryRCAMSInterParameter(CThostFtdcRCAMSInterParameterField* pRCAMSInterParameter, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
-{
-	Task task = Task();
-	task.task_name = ONRSPQRYRCAMSINTERPARAMETER;
-	if (pRCAMSInterParameter)
-	{
-		CThostFtdcRCAMSInterParameterField* task_data = new CThostFtdcRCAMSInterParameterField();
-		*task_data = *pRCAMSInterParameter;
-		task.task_data = task_data;
-	}
-	if (pRspInfo)
-	{
-		CThostFtdcRspInfoField* task_error = new CThostFtdcRspInfoField();
-		*task_error = *pRspInfo;
-		task.task_error = task_error;
-	}
-	task.task_id = nRequestID;
-	task.task_last = bIsLast;
-	this->task_queue.push(task);
-};
-
 void TdApi::OnRspQryRCAMSShortOptAdjustParam(CThostFtdcRCAMSShortOptAdjustParamField* pRCAMSShortOptAdjustParam, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
 	Task task = Task();
