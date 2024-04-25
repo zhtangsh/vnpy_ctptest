@@ -4224,7 +4224,6 @@ void TdApi::processRspQuoteInsert(Task* task)
 		data["InstrumentID"] = toUtf(task_data->InstrumentID);
 		data["IPAddress"] = toUtf(task_data->IPAddress);
 		data["ReplaceSysID"] = toUtf(task_data->ReplaceSysID);
-		data["TimeCondition"] = task_data->TimeCondition;
 		delete task_data;
 	}
 	dict error;
@@ -5978,7 +5977,6 @@ void TdApi::processRspQryQuote(Task* task)
 		data["ExchangeInstID"] = toUtf(task_data->ExchangeInstID);
 		data["IPAddress"] = toUtf(task_data->IPAddress);
 		data["ReplaceSysID"] = toUtf(task_data->ReplaceSysID);
-		data["TimeCondition"] = task_data->TimeCondition;
 		delete task_data;
 	}
 	dict error;
@@ -6877,7 +6875,6 @@ void TdApi::processRtnQuote(Task* task)
 		data["ExchangeInstID"] = toUtf(task_data->ExchangeInstID);
 		data["IPAddress"] = toUtf(task_data->IPAddress);
 		data["ReplaceSysID"] = toUtf(task_data->ReplaceSysID);
-		data["TimeCondition"] = task_data->TimeCondition;
 		delete task_data;
 	}
 	this->onRtnQuote(data);
@@ -6916,7 +6913,6 @@ void TdApi::processErrRtnQuoteInsert(Task* task)
 		data["InstrumentID"] = toUtf(task_data->InstrumentID);
 		data["IPAddress"] = toUtf(task_data->IPAddress);
 		data["ReplaceSysID"] = toUtf(task_data->ReplaceSysID);
-		data["TimeCondition"] = task_data->TimeCondition;
 		delete task_data;
 	}
 	dict error;
