@@ -9721,7 +9721,6 @@ int TdApi::reqQuoteInsert(const dict& req, int reqid)
 	getString(req, "InstrumentID", myreq.InstrumentID);
 	getString(req, "IPAddress", myreq.IPAddress);
 	getString(req, "ReplaceSysID", myreq.ReplaceSysID);
-	getChar(req, "TimeCondition", &myreq.TimeCondition);
 	int i = this->api->ReqQuoteInsert(&myreq, reqid);
 	return i;
 };
@@ -10795,16 +10794,6 @@ int TdApi::reqQryInvestorProdSPBMDetail(const dict& req, int reqid)
 	return i;
 };
 
-int TdApi::reqQryInvestorCommoditySPMMMargin(const dict& req, int reqid)
-{
-	CThostFtdcQryInvestorCommoditySPMMMarginField myreq = CThostFtdcQryInvestorCommoditySPMMMarginField();
-	memset(&myreq, 0, sizeof(myreq));
-	getString(req, "BrokerID", myreq.BrokerID);
-	getString(req, "InvestorID", myreq.InvestorID);
-	getString(req, "CommodityID", myreq.CommodityID);
-	int i = this->api->ReqQryInvestorCommoditySPMMMargin(&myreq, reqid);
-	return i;
-};
 
 int TdApi::reqQrySPMMProductParam(const dict& req, int reqid)
 {
