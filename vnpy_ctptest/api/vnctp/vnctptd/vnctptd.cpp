@@ -2620,47 +2620,6 @@ void TdApi::OnRspQryInvestorProdSPBMDetail(CThostFtdcInvestorProdSPBMDetailField
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspQryInvestorCommodityGroupSPMMMargin(CThostFtdcInvestorCommodityGroupSPMMMarginField* pInvestorCommodityGroupSPMMMargin, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
-{
-	Task task = Task();
-	task.task_name = ONRSPQRYINVESTORCOMMODITYGROUPSPMMMARGIN;
-	if (pInvestorCommodityGroupSPMMMargin)
-	{
-		CThostFtdcInvestorCommodityGroupSPMMMarginField* task_data = new CThostFtdcInvestorCommodityGroupSPMMMarginField();
-		*task_data = *pInvestorCommodityGroupSPMMMargin;
-		task.task_data = task_data;
-	}
-	if (pRspInfo)
-	{
-		CThostFtdcRspInfoField* task_error = new CThostFtdcRspInfoField();
-		*task_error = *pRspInfo;
-		task.task_error = task_error;
-	}
-	task.task_id = nRequestID;
-	task.task_last = bIsLast;
-	this->task_queue.push(task);
-};
-
-void TdApi::OnRspQrySPMMInstParam(CThostFtdcSPMMInstParamField* pSPMMInstParam, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
-{
-	Task task = Task();
-	task.task_name = ONRSPQRYSPMMINSTPARAM;
-	if (pSPMMInstParam)
-	{
-		CThostFtdcSPMMInstParamField* task_data = new CThostFtdcSPMMInstParamField();
-		*task_data = *pSPMMInstParam;
-		task.task_data = task_data;
-	}
-	if (pRspInfo)
-	{
-		CThostFtdcRspInfoField* task_error = new CThostFtdcRspInfoField();
-		*task_error = *pRspInfo;
-		task.task_error = task_error;
-	}
-	task.task_id = nRequestID;
-	task.task_last = bIsLast;
-	this->task_queue.push(task);
-};
 
 void TdApi::OnRspQrySPMMProductParam(CThostFtdcSPMMProductParamField* pSPMMProductParam, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
@@ -2670,69 +2629,6 @@ void TdApi::OnRspQrySPMMProductParam(CThostFtdcSPMMProductParamField* pSPMMProdu
 	{
 		CThostFtdcSPMMProductParamField* task_data = new CThostFtdcSPMMProductParamField();
 		*task_data = *pSPMMProductParam;
-		task.task_data = task_data;
-	}
-	if (pRspInfo)
-	{
-		CThostFtdcRspInfoField* task_error = new CThostFtdcRspInfoField();
-		*task_error = *pRspInfo;
-		task.task_error = task_error;
-	}
-	task.task_id = nRequestID;
-	task.task_last = bIsLast;
-	this->task_queue.push(task);
-};
-
-void TdApi::OnRspQrySPBMAddOnInterParameter(CThostFtdcSPBMAddOnInterParameterField* pSPBMAddOnInterParameter, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
-{
-	Task task = Task();
-	task.task_name = ONRSPQRYSPBMADDONINTERPARAMETER;
-	if (pSPBMAddOnInterParameter)
-	{
-		CThostFtdcSPBMAddOnInterParameterField* task_data = new CThostFtdcSPBMAddOnInterParameterField();
-		*task_data = *pSPBMAddOnInterParameter;
-		task.task_data = task_data;
-	}
-	if (pRspInfo)
-	{
-		CThostFtdcRspInfoField* task_error = new CThostFtdcRspInfoField();
-		*task_error = *pRspInfo;
-		task.task_error = task_error;
-	}
-	task.task_id = nRequestID;
-	task.task_last = bIsLast;
-	this->task_queue.push(task);
-};
-
-void TdApi::OnRspQryRCAMSCombProductInfo(CThostFtdcRCAMSCombProductInfoField* pRCAMSCombProductInfo, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
-{
-	Task task = Task();
-	task.task_name = ONRSPQRYRCAMSCOMBPRODUCTINFO;
-	if (pRCAMSCombProductInfo)
-	{
-		CThostFtdcRCAMSCombProductInfoField* task_data = new CThostFtdcRCAMSCombProductInfoField();
-		*task_data = *pRCAMSCombProductInfo;
-		task.task_data = task_data;
-	}
-	if (pRspInfo)
-	{
-		CThostFtdcRspInfoField* task_error = new CThostFtdcRspInfoField();
-		*task_error = *pRspInfo;
-		task.task_error = task_error;
-	}
-	task.task_id = nRequestID;
-	task.task_last = bIsLast;
-	this->task_queue.push(task);
-};
-
-void TdApi::OnRspQryRCAMSInstrParameter(CThostFtdcRCAMSInstrParameterField* pRCAMSInstrParameter, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
-{
-	Task task = Task();
-	task.task_name = ONRSPQRYRCAMSINSTRPARAMETER;
-	if (pRCAMSInstrParameter)
-	{
-		CThostFtdcRCAMSInstrParameterField* task_data = new CThostFtdcRCAMSInstrParameterField();
-		*task_data = *pRCAMSInstrParameter;
 		task.task_data = task_data;
 	}
 	if (pRspInfo)
