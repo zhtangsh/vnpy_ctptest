@@ -1532,10 +1532,4 @@ public:
 	int reqQryRCAMSInvestorCombPosition(const dict& req, int reqid);
 
 	int reqQryInvestorProdRCAMSMargin(const dict& req, int reqid);
-
-	int reqQryRULEInstrParameter(const dict& req, int reqid);
-
-	int reqQryRULEIntraParameter(const dict& req, int reqid);
-
-	int reqQryRULEInterParameter(const dict& req, int reqid);
 };

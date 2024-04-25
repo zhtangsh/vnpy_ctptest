@@ -11834,37 +11834,6 @@ int TdApi::reqQryInvestorProdRCAMSMargin(const dict& req, int reqid)
 	return i;
 };
 
-int TdApi::reqQryRULEInstrParameter(const dict& req, int reqid)
-{
-	CThostFtdcQryRULEInstrParameterField myreq = CThostFtdcQryRULEInstrParameterField();
-	memset(&myreq, 0, sizeof(myreq));
-	getString(req, "ExchangeID", myreq.ExchangeID);
-	getString(req, "InstrumentID", myreq.InstrumentID);
-	int i = this->api->ReqQryRULEInstrParameter(&myreq, reqid);
-	return i;
-};
-
-int TdApi::reqQryRULEIntraParameter(const dict& req, int reqid)
-{
-	CThostFtdcQryRULEIntraParameterField myreq = CThostFtdcQryRULEIntraParameterField();
-	memset(&myreq, 0, sizeof(myreq));
-	getString(req, "ExchangeID", myreq.ExchangeID);
-	getString(req, "ProdFamilyCode", myreq.ProdFamilyCode);
-	int i = this->api->ReqQryRULEIntraParameter(&myreq, reqid);
-	return i;
-};
-
-int TdApi::reqQryRULEInterParameter(const dict& req, int reqid)
-{
-	CThostFtdcQryRULEInterParameterField myreq = CThostFtdcQryRULEInterParameterField();
-	memset(&myreq, 0, sizeof(myreq));
-	getString(req, "ExchangeID", myreq.ExchangeID);
-	getString(req, "Leg1ProdFamilyCode", myreq.Leg1ProdFamilyCode);
-	getString(req, "Leg2ProdFamilyCode", myreq.Leg2ProdFamilyCode);
-	getInt(req, "CommodityGroupID", &myreq.CommodityGroupID);
-	int i = this->api->ReqQryRULEInterParameter(&myreq, reqid);
-	return i;
-};
 
 ///-------------------------------------------------------------------------------------
 ///Boost.Python·â×°
@@ -13851,10 +13820,6 @@ PYBIND11_MODULE(vnctptd, m)
 		.def("reqQryRCAMSShortOptAdjustParam", &TdApi::reqQryRCAMSShortOptAdjustParam)
 		.def("reqQryRCAMSInvestorCombPosition", &TdApi::reqQryRCAMSInvestorCombPosition)
 		.def("reqQryInvestorProdRCAMSMargin", &TdApi::reqQryInvestorProdRCAMSMargin)
-		.def("reqQryRULEInstrParameter", &TdApi::reqQryRULEInstrParameter)
-		.def("reqQryRULEIntraParameter", &TdApi::reqQryRULEIntraParameter)
-		.def("reqQryRULEInterParameter", &TdApi::reqQryRULEInterParameter)
-
 		.def("onFrontConnected", &TdApi::onFrontConnected)
 		.def("onFrontDisconnected", &TdApi::onFrontDisconnected)
 		.def("onHeartBeatWarning", &TdApi::onHeartBeatWarning)
