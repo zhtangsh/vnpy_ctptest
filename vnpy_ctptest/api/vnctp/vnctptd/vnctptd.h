@@ -898,12 +898,6 @@ public:
 
 	void processRspQryInvestorProdSPBMDetail(Task* task);
 
-	void processRspQrySPMMInstParam(Task* task);
-
-	void processRspQrySPMMProductParam(Task* task);
-
-	void processRspQrySPBMAddprocessInterParameter(Task* task);
-
 	void processRspQryRCAMSCombProductInfo(Task* task);
 
 	void processRspQryRCAMSInstrParameter(Task* task);

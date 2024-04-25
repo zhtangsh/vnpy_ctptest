@@ -3464,24 +3464,6 @@ void TdApi::processTask()
 				break;
 			}
 
-			case ONRSPQRYSPMMINSTPARAM:
-			{
-				this->processRspQrySPMMInstParam(&task);
-				break;
-			}
-
-			case ONRSPQRYSPMMPRODUCTPARAM:
-			{
-				this->processRspQrySPMMProductParam(&task);
-				break;
-			}
-
-			case ONRSPQRYSPBMADDONINTERPARAMETER:
-			{
-				this->processRspQrySPBMAddprocessInterParameter(&task);
-				break;
-			}
-
 			case ONRSPQRYRCAMSCOMBPRODUCTINFO:
 			{
 				this->processRspQryRCAMSCombProductInfo(&task);
@@ -9226,81 +9208,6 @@ void TdApi::processRspQryInvestorProdSPBMDetail(Task* task)
 		delete task_error;
 	}
 	this->onRspQryInvestorProdSPBMDetail(data, error, task->task_id, task->task_last);
-};
-
-void TdApi::processRspQrySPMMInstParam(Task* task)
-{
-	gil_scoped_acquire acquire;
-	dict data;
-	if (task->task_data)
-	{
-		CThostFtdcSPMMInstParamField* task_data = (CThostFtdcSPMMInstParamField*)task->task_data;
-		data["ExchangeID"] = toUtf(task_data->ExchangeID);
-		data["InstrumentID"] = toUtf(task_data->InstrumentID);
-		data["InstMarginCalID"] = task_data->InstMarginCalID;
-		data["CommodityID"] = toUtf(task_data->CommodityID);
-		data["CommodityGroupID"] = toUtf(task_data->CommodityGroupID);
-		delete task_data;
-	}
-	dict error;
-	if (task->task_error)
-	{
-		CThostFtdcRspInfoField* task_error = (CThostFtdcRspInfoField*)task->task_error;
-		error["ErrorID"] = task_error->ErrorID;
-		error["ErrorMsg"] = toUtf(task_error->ErrorMsg);
-		delete task_error;
-	}
-	this->onRspQrySPMMInstParam(data, error, task->task_id, task->task_last);
-};
-
-void TdApi::processRspQrySPMMProductParam(Task* task)
-{
-	gil_scoped_acquire acquire;
-	dict data;
-	if (task->task_data)
-	{
-		CThostFtdcSPMMProductParamField* task_data = (CThostFtdcSPMMProductParamField*)task->task_data;
-		data["ExchangeID"] = toUtf(task_data->ExchangeID);
-		data["ProductID"] = toUtf(task_data->ProductID);
-		data["CommodityID"] = toUtf(task_data->CommodityID);
-		data["CommodityGroupID"] = toUtf(task_data->CommodityGroupID);
-		delete task_data;
-	}
-	dict error;
-	if (task->task_error)
-	{
-		CThostFtdcRspInfoField* task_error = (CThostFtdcRspInfoField*)task->task_error;
-		error["ErrorID"] = task_error->ErrorID;
-		error["ErrorMsg"] = toUtf(task_error->ErrorMsg);
-		delete task_error;
-	}
-	this->onRspQrySPMMProductParam(data, error, task->task_id, task->task_last);
-};
-
-void TdApi::processRspQrySPBMAddprocessInterParameter(Task* task)
-{
-	gil_scoped_acquire acquire;
-	dict data;
-	if (task->task_data)
-	{
-		CThostFtdcSPBMAddOnInterParameterField* task_data = (CThostFtdcSPBMAddOnInterParameterField*)task->task_data;
-		data["TradingDay"] = toUtf(task_data->TradingDay);
-		data["ExchangeID"] = toUtf(task_data->ExchangeID);
-		data["SpreadId"] = task_data->SpreadId;
-		data["AddOnInterRateZ2"] = task_data->AddOnInterRateZ2;
-		data["Leg1ProdFamilyCode"] = toUtf(task_data->Leg1ProdFamilyCode);
-		data["Leg2ProdFamilyCode"] = toUtf(task_data->Leg2ProdFamilyCode);
-		delete task_data;
-	}
-	dict error;
-	if (task->task_error)
-	{
-		CThostFtdcRspInfoField* task_error = (CThostFtdcRspInfoField*)task->task_error;
-		error["ErrorID"] = task_error->ErrorID;
-		error["ErrorMsg"] = toUtf(task_error->ErrorMsg);
-		delete task_error;
-	}
-	this->onRspQrySPBMAddonInterParameter(data, error, task->task_id, task->task_last);
 };
 
 void TdApi::processRspQryRCAMSCombProductInfo(Task* task)
