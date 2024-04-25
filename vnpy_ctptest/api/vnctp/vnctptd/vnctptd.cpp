@@ -3464,11 +3464,6 @@ void TdApi::processTask()
 				break;
 			}
 
-			case ONRSPQRYRCAMSINSTRPARAMETER:
-			{
-				this->processRspQryRCAMSInstrParameter(&task);
-				break;
-			}
 
 			case ONRSPQRYRCAMSINTRAPARAMETER:
 			{
@@ -9197,30 +9192,6 @@ void TdApi::processRspQryInvestorProdSPBMDetail(Task* task)
 		delete task_error;
 	}
 	this->onRspQryInvestorProdSPBMDetail(data, error, task->task_id, task->task_last);
-};
-
-void TdApi::processRspQryRCAMSInstrParameter(Task* task)
-{
-	gil_scoped_acquire acquire;
-	dict data;
-	if (task->task_data)
-	{
-		CThostFtdcRCAMSInstrParameterField* task_data = (CThostFtdcRCAMSInstrParameterField*)task->task_data;
-		data["TradingDay"] = toUtf(task_data->TradingDay);
-		data["ExchangeID"] = toUtf(task_data->ExchangeID);
-		data["ProductID"] = toUtf(task_data->ProductID);
-		data["HedgeRate"] = task_data->HedgeRate;
-		delete task_data;
-	}
-	dict error;
-	if (task->task_error)
-	{
-		CThostFtdcRspInfoField* task_error = (CThostFtdcRspInfoField*)task->task_error;
-		error["ErrorID"] = task_error->ErrorID;
-		error["ErrorMsg"] = toUtf(task_error->ErrorMsg);
-		delete task_error;
-	}
-	this->onRspQryRCAMSInstrParameter(data, error, task->task_id, task->task_last);
 };
 
 void TdApi::processRspQryRCAMSIntraParameter(Task* task)
