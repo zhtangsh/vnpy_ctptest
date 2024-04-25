@@ -11772,23 +11772,6 @@ int TdApi::reqQryRCAMSCombProductInfo(const dict& req, int reqid)
 	return i;
 };
 
-int TdApi::reqQryRCAMSInstrParameter(const dict& req, int reqid)
-{
-	CThostFtdcQryRCAMSInstrParameterField myreq = CThostFtdcQryRCAMSInstrParameterField();
-	memset(&myreq, 0, sizeof(myreq));
-	getString(req, "ProductID", myreq.ProductID);
-	int i = this->api->ReqQryRCAMSInstrParameter(&myreq, reqid);
-	return i;
-};
-
-int TdApi::reqQryRCAMSIntraParameter(const dict& req, int reqid)
-{
-	CThostFtdcQryRCAMSIntraParameterField myreq = CThostFtdcQryRCAMSIntraParameterField();
-	memset(&myreq, 0, sizeof(myreq));
-	getString(req, "CombProductID", myreq.CombProductID);
-	int i = this->api->ReqQryRCAMSIntraParameter(&myreq, reqid);
-	return i;
-};
 
 int TdApi::reqQryRCAMSInterParameter(const dict& req, int reqid)
 {
@@ -13790,9 +13773,6 @@ PYBIND11_MODULE(vnctptd, m)
 		.def("reqQrySPMMProductParam", &TdApi::reqQrySPMMProductParam)
 		.def("reqQrySPBMAddOnInterParameter", &TdApi::reqQrySPBMAddOnInterParameter)
 		.def("reqQryRCAMSCombProductInfo", &TdApi::reqQryRCAMSCombProductInfo)
-		.def("reqQryRCAMSInstrParameter", &TdApi::reqQryRCAMSInstrParameter)
-		.def("reqQryRCAMSIntraParameter", &TdApi::reqQryRCAMSIntraParameter)
-		.def("reqQryRCAMSInterParameter", &TdApi::reqQryRCAMSInterParameter)
 		.def("onFrontConnected", &TdApi::onFrontConnected)
 		.def("onFrontDisconnected", &TdApi::onFrontDisconnected)
 		.def("onHeartBeatWarning", &TdApi::onHeartBeatWarning)

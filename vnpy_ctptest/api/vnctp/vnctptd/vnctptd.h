@@ -1520,10 +1520,4 @@ public:
 	int reqQrySPBMAddOnInterParameter(const dict& req, int reqid);
 
 	int reqQryRCAMSCombProductInfo(const dict& req, int reqid);
-
-	int reqQryRCAMSInstrParameter(const dict& req, int reqid);
-
-	int reqQryRCAMSIntraParameter(const dict& req, int reqid);
-
-	int reqQryRCAMSInterParameter(const dict& req, int reqid);
 };
