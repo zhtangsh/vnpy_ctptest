@@ -11810,30 +11810,6 @@ int TdApi::reqQryRCAMSShortOptAdjustParam(const dict& req, int reqid)
 	return i;
 };
 
-int TdApi::reqQryRCAMSInvestorCombPosition(const dict& req, int reqid)
-{
-	CThostFtdcQryRCAMSInvestorCombPositionField myreq = CThostFtdcQryRCAMSInvestorCombPositionField();
-	memset(&myreq, 0, sizeof(myreq));
-	getString(req, "BrokerID", myreq.BrokerID);
-	getString(req, "InvestorID", myreq.InvestorID);
-	getString(req, "InstrumentID", myreq.InstrumentID);
-	getString(req, "CombInstrumentID", myreq.CombInstrumentID);
-	int i = this->api->ReqQryRCAMSInvestorCombPosition(&myreq, reqid);
-	return i;
-};
-
-int TdApi::reqQryInvestorProdRCAMSMargin(const dict& req, int reqid)
-{
-	CThostFtdcQryInvestorProdRCAMSMarginField myreq = CThostFtdcQryInvestorProdRCAMSMarginField();
-	memset(&myreq, 0, sizeof(myreq));
-	getString(req, "BrokerID", myreq.BrokerID);
-	getString(req, "InvestorID", myreq.InvestorID);
-	getString(req, "CombProductID", myreq.CombProductID);
-	getString(req, "ProductGroupID", myreq.ProductGroupID);
-	int i = this->api->ReqQryInvestorProdRCAMSMargin(&myreq, reqid);
-	return i;
-};
-
 
 ///-------------------------------------------------------------------------------------
 ///Boost.Python·â×°
@@ -13817,9 +13793,6 @@ PYBIND11_MODULE(vnctptd, m)
 		.def("reqQryRCAMSInstrParameter", &TdApi::reqQryRCAMSInstrParameter)
 		.def("reqQryRCAMSIntraParameter", &TdApi::reqQryRCAMSIntraParameter)
 		.def("reqQryRCAMSInterParameter", &TdApi::reqQryRCAMSInterParameter)
-		.def("reqQryRCAMSShortOptAdjustParam", &TdApi::reqQryRCAMSShortOptAdjustParam)
-		.def("reqQryRCAMSInvestorCombPosition", &TdApi::reqQryRCAMSInvestorCombPosition)
-		.def("reqQryInvestorProdRCAMSMargin", &TdApi::reqQryInvestorProdRCAMSMargin)
 		.def("onFrontConnected", &TdApi::onFrontConnected)
 		.def("onFrontDisconnected", &TdApi::onFrontDisconnected)
 		.def("onHeartBeatWarning", &TdApi::onHeartBeatWarning)

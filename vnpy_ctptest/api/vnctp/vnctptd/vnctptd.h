@@ -1526,10 +1526,4 @@ public:
 	int reqQryRCAMSIntraParameter(const dict& req, int reqid);
 
 	int reqQryRCAMSInterParameter(const dict& req, int reqid);
-
-	int reqQryRCAMSShortOptAdjustParam(const dict& req, int reqid);
-
-	int reqQryRCAMSInvestorCombPosition(const dict& req, int reqid);
-
-	int reqQryInvestorProdRCAMSMargin(const dict& req, int reqid);
 };
