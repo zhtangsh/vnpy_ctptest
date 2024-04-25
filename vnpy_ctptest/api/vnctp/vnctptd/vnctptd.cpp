@@ -11750,29 +11750,6 @@ int TdApi::reqQrySPMMProductParam(const dict& req, int reqid)
 	return i;
 };
 
-int TdApi::reqQrySPBMAddOnInterParameter(const dict& req, int reqid)
-{
-	CThostFtdcQrySPBMAddOnInterParameterField myreq = CThostFtdcQrySPBMAddOnInterParameterField();
-	memset(&myreq, 0, sizeof(myreq));
-	getString(req, "ExchangeID", myreq.ExchangeID);
-	getString(req, "Leg1ProdFamilyCode", myreq.Leg1ProdFamilyCode);
-	getString(req, "Leg2ProdFamilyCode", myreq.Leg2ProdFamilyCode);
-	int i = this->api->ReqQrySPBMAddOnInterParameter(&myreq, reqid);
-	return i;
-};
-
-int TdApi::reqQryRCAMSCombProductInfo(const dict& req, int reqid)
-{
-	CThostFtdcQryRCAMSCombProductInfoField myreq = CThostFtdcQryRCAMSCombProductInfoField();
-	memset(&myreq, 0, sizeof(myreq));
-	getString(req, "ProductID", myreq.ProductID);
-	getString(req, "CombProductID", myreq.CombProductID);
-	getString(req, "ProductGroupID", myreq.ProductGroupID);
-	int i = this->api->ReqQryRCAMSCombProductInfo(&myreq, reqid);
-	return i;
-};
-
-
 int TdApi::reqQryRCAMSInterParameter(const dict& req, int reqid)
 {
 	CThostFtdcQryRCAMSInterParameterField myreq = CThostFtdcQryRCAMSInterParameterField();
@@ -13767,12 +13744,8 @@ PYBIND11_MODULE(vnctptd, m)
 		.def("reqQrySPBMInvestorPortfDef", &TdApi::reqQrySPBMInvestorPortfDef)
 		.def("reqQryInvestorPortfMarginRatio", &TdApi::reqQryInvestorPortfMarginRatio)
 		.def("reqQryInvestorProdSPBMDetail", &TdApi::reqQryInvestorProdSPBMDetail)
-		.def("reqQryInvestorCommoditySPMMMargin", &TdApi::reqQryInvestorCommoditySPMMMargin)
 		.def("reqQryInvestorCommodityGroupSPMMMargin", &TdApi::reqQryInvestorCommodityGroupSPMMMargin)
 		.def("reqQrySPMMInstParam", &TdApi::reqQrySPMMInstParam)
-		.def("reqQrySPMMProductParam", &TdApi::reqQrySPMMProductParam)
-		.def("reqQrySPBMAddOnInterParameter", &TdApi::reqQrySPBMAddOnInterParameter)
-		.def("reqQryRCAMSCombProductInfo", &TdApi::reqQryRCAMSCombProductInfo)
 		.def("onFrontConnected", &TdApi::onFrontConnected)
 		.def("onFrontDisconnected", &TdApi::onFrontDisconnected)
 		.def("onHeartBeatWarning", &TdApi::onHeartBeatWarning)
