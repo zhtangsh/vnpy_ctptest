@@ -1538,6 +1538,4 @@ public:
 	int reqQryRULEIntraParameter(const dict& req, int reqid);
 
 	int reqQryRULEInterParameter(const dict& req, int reqid);
-
-	int reqQryInvestorProdRULEMargin(const dict& req, int reqid);
 };

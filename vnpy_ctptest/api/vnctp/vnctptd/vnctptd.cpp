@@ -11866,19 +11866,6 @@ int TdApi::reqQryRULEInterParameter(const dict& req, int reqid)
 	return i;
 };
 
-int TdApi::reqQryInvestorProdRULEMargin(const dict& req, int reqid)
-{
-	CThostFtdcQryInvestorProdRULEMarginField myreq = CThostFtdcQryInvestorProdRULEMarginField();
-	memset(&myreq, 0, sizeof(myreq));
-	getString(req, "ExchangeID", myreq.ExchangeID);
-	getString(req, "BrokerID", myreq.BrokerID);
-	getString(req, "InvestorID", myreq.InvestorID);
-	getString(req, "ProdFamilyCode", myreq.ProdFamilyCode);
-	getInt(req, "CommodityGroupID", &myreq.CommodityGroupID);
-	int i = this->api->ReqQryInvestorProdRULEMargin(&myreq, reqid);
-	return i;
-};
-
 ///-------------------------------------------------------------------------------------
 ///Boost.Python·â×°
 ///-------------------------------------------------------------------------------------
@@ -13867,7 +13854,6 @@ PYBIND11_MODULE(vnctptd, m)
 		.def("reqQryRULEInstrParameter", &TdApi::reqQryRULEInstrParameter)
 		.def("reqQryRULEIntraParameter", &TdApi::reqQryRULEIntraParameter)
 		.def("reqQryRULEInterParameter", &TdApi::reqQryRULEInterParameter)
-		.def("reqQryInvestorProdRULEMargin", &TdApi::reqQryInvestorProdRULEMargin)
 
 		.def("onFrontConnected", &TdApi::onFrontConnected)
 		.def("onFrontDisconnected", &TdApi::onFrontDisconnected)
