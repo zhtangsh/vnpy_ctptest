@@ -3464,12 +3464,6 @@ void TdApi::processTask()
 				break;
 			}
 
-			case ONRSPQRYRCAMSCOMBPRODUCTINFO:
-			{
-				this->processRspQryRCAMSCombProductInfo(&task);
-				break;
-			}
-
 			case ONRSPQRYRCAMSINSTRPARAMETER:
 			{
 				this->processRspQryRCAMSInstrParameter(&task);
@@ -3488,11 +3482,6 @@ void TdApi::processTask()
 				break;
 			}
 
-			case ONRSPQRYRCAMSSHORTOPTADJUSTPARAM:
-			{
-				this->processRspQryRCAMSShortOptAdjustParam(&task);
-				break;
-			}
 
 			case ONRSPQRYRCAMSINVESTORCOMBPOSITION:
 			{
@@ -9210,31 +9199,6 @@ void TdApi::processRspQryInvestorProdSPBMDetail(Task* task)
 	this->onRspQryInvestorProdSPBMDetail(data, error, task->task_id, task->task_last);
 };
 
-void TdApi::processRspQryRCAMSCombProductInfo(Task* task)
-{
-	gil_scoped_acquire acquire;
-	dict data;
-	if (task->task_data)
-	{
-		CThostFtdcRCAMSCombProductInfoField* task_data = (CThostFtdcRCAMSCombProductInfoField*)task->task_data;
-		data["TradingDay"] = toUtf(task_data->TradingDay);
-		data["ExchangeID"] = toUtf(task_data->ExchangeID);
-		data["ProductID"] = toUtf(task_data->ProductID);
-		data["CombProductID"] = toUtf(task_data->CombProductID);
-		data["ProductGroupID"] = toUtf(task_data->ProductGroupID);
-		delete task_data;
-	}
-	dict error;
-	if (task->task_error)
-	{
-		CThostFtdcRspInfoField* task_error = (CThostFtdcRspInfoField*)task->task_error;
-		error["ErrorID"] = task_error->ErrorID;
-		error["ErrorMsg"] = toUtf(task_error->ErrorMsg);
-		delete task_error;
-	}
-	this->onRspQryRCAMSCombProductInfo(data, error, task->task_id, task->task_last);
-};
-
 void TdApi::processRspQryRCAMSInstrParameter(Task* task)
 {
 	gil_scoped_acquire acquire;
@@ -9308,31 +9272,6 @@ void TdApi::processRspQryRCAMSInterParameter(Task* task)
 		delete task_error;
 	}
 	this->onRspQryRCAMSInterParameter(data, error, task->task_id, task->task_last);
-};
-
-void TdApi::processRspQryRCAMSShortOptAdjustParam(Task* task)
-{
-	gil_scoped_acquire acquire;
-	dict data;
-	if (task->task_data)
-	{
-		CThostFtdcRCAMSShortOptAdjustParamField* task_data = (CThostFtdcRCAMSShortOptAdjustParamField*)task->task_data;
-		data["TradingDay"] = toUtf(task_data->TradingDay);
-		data["ExchangeID"] = toUtf(task_data->ExchangeID);
-		data["CombProductID"] = toUtf(task_data->CombProductID);
-		data["HedgeFlag"] = task_data->HedgeFlag;
-		data["AdjustValue"] = task_data->AdjustValue;
-		delete task_data;
-	}
-	dict error;
-	if (task->task_error)
-	{
-		CThostFtdcRspInfoField* task_error = (CThostFtdcRspInfoField*)task->task_error;
-		error["ErrorID"] = task_error->ErrorID;
-		error["ErrorMsg"] = toUtf(task_error->ErrorMsg);
-		delete task_error;
-	}
-	this->onRspQryRCAMSShortOptAdjustParam(data, error, task->task_id, task->task_last);
 };
 
 void TdApi::processRspQryRCAMSInvestorCombPosition(Task* task)
