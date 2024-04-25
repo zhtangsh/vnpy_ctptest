@@ -3464,23 +3464,9 @@ void TdApi::processTask()
 				break;
 			}
 
-
-			case ONRSPQRYRCAMSINTRAPARAMETER:
-			{
-				this->processRspQryRCAMSIntraParameter(&task);
-				break;
-			}
-
 			case ONRSPQRYRCAMSINTERPARAMETER:
 			{
 				this->processRspQryRCAMSInterParameter(&task);
-				break;
-			}
-
-
-			case ONRSPQRYRCAMSINVESTORCOMBPOSITION:
-			{
-				this->processRspQryRCAMSInvestorCombPosition(&task);
 				break;
 			}
 
@@ -9194,30 +9180,6 @@ void TdApi::processRspQryInvestorProdSPBMDetail(Task* task)
 	this->onRspQryInvestorProdSPBMDetail(data, error, task->task_id, task->task_last);
 };
 
-void TdApi::processRspQryRCAMSIntraParameter(Task* task)
-{
-	gil_scoped_acquire acquire;
-	dict data;
-	if (task->task_data)
-	{
-		CThostFtdcRCAMSIntraParameterField* task_data = (CThostFtdcRCAMSIntraParameterField*)task->task_data;
-		data["TradingDay"] = toUtf(task_data->TradingDay);
-		data["ExchangeID"] = toUtf(task_data->ExchangeID);
-		data["CombProductID"] = toUtf(task_data->CombProductID);
-		data["HedgeRate"] = task_data->HedgeRate;
-		delete task_data;
-	}
-	dict error;
-	if (task->task_error)
-	{
-		CThostFtdcRspInfoField* task_error = (CThostFtdcRspInfoField*)task->task_error;
-		error["ErrorID"] = task_error->ErrorID;
-		error["ErrorMsg"] = toUtf(task_error->ErrorMsg);
-		delete task_error;
-	}
-	this->onRspQryRCAMSIntraParameter(data, error, task->task_id, task->task_last);
-};
-
 void TdApi::processRspQryRCAMSInterParameter(Task* task)
 {
 	gil_scoped_acquire acquire;
@@ -9243,38 +9205,6 @@ void TdApi::processRspQryRCAMSInterParameter(Task* task)
 		delete task_error;
 	}
 	this->onRspQryRCAMSInterParameter(data, error, task->task_id, task->task_last);
-};
-
-void TdApi::processRspQryRCAMSInvestorCombPosition(Task* task)
-{
-	gil_scoped_acquire acquire;
-	dict data;
-	if (task->task_data)
-	{
-		CThostFtdcRCAMSInvestorCombPositionField* task_data = (CThostFtdcRCAMSInvestorCombPositionField*)task->task_data;
-		data["ExchangeID"] = toUtf(task_data->ExchangeID);
-		data["BrokerID"] = toUtf(task_data->BrokerID);
-		data["InvestorID"] = toUtf(task_data->InvestorID);
-		data["InstrumentID"] = toUtf(task_data->InstrumentID);
-		data["HedgeFlag"] = task_data->HedgeFlag;
-		data["PosiDirection"] = task_data->PosiDirection;
-		data["CombInstrumentID"] = toUtf(task_data->CombInstrumentID);
-		data["LegID"] = task_data->LegID;
-		data["ExchangeInstID"] = toUtf(task_data->ExchangeInstID);
-		data["TotalAmt"] = task_data->TotalAmt;
-		data["ExchMargin"] = task_data->ExchMargin;
-		data["Margin"] = task_data->Margin;
-		delete task_data;
-	}
-	dict error;
-	if (task->task_error)
-	{
-		CThostFtdcRspInfoField* task_error = (CThostFtdcRspInfoField*)task->task_error;
-		error["ErrorID"] = task_error->ErrorID;
-		error["ErrorMsg"] = toUtf(task_error->ErrorMsg);
-		delete task_error;
-	}
-	this->onRspQryRCAMSInvestorCombPosition(data, error, task->task_id, task->task_last);
 };
 
 void TdApi::processRspQryInvestorProdRCAMSMargin(Task* task)
