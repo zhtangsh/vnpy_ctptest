@@ -9058,7 +9058,6 @@ void TdApi::processRspQrySPBMFutureParameter(Task* task)
 		data["LockRateX"] = task_data->LockRateX;
 		data["AddOnRate"] = task_data->AddOnRate;
 		data["PreSettlementPrice"] = task_data->PreSettlementPrice;
-		data["AddOnLockRateX2"] = task_data->AddOnLockRateX2;
 		delete task_data;
 	}
 	dict error;
@@ -9112,7 +9111,6 @@ void TdApi::processRspQrySPBMIntraParameter(Task* task)
 		data["ExchangeID"] = toUtf(task_data->ExchangeID);
 		data["ProdFamilyCode"] = toUtf(task_data->ProdFamilyCode);
 		data["IntraRateY"] = task_data->IntraRateY;
-		data["AddOnIntraRateY2"] = task_data->AddOnIntraRateY2;
 		delete task_data;
 	}
 	dict error;
