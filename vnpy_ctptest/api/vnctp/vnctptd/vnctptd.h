@@ -898,10 +898,6 @@ public:
 
 	void processRspQryInvestorProdSPBMDetail(Task* task);
 
-	void processRspQryRCAMSInterParameter(Task* task);
-
-	void processRspQryInvestorProdRCAMSMargin(Task* task);
-
 
     //-------------------------------------------------------------------------------------
     //data：回调函数的数据字典

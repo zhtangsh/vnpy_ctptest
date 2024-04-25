@@ -3463,19 +3463,6 @@ void TdApi::processTask()
 				this->processRspQryInvestorProdSPBMDetail(&task);
 				break;
 			}
-
-			case ONRSPQRYRCAMSINTERPARAMETER:
-			{
-				this->processRspQryRCAMSInterParameter(&task);
-				break;
-			}
-
-			case ONRSPQRYINVESTORPRODRCAMSMARGIN:
-			{
-				this->processRspQryInvestorProdRCAMSMargin(&task);
-				break;
-			}
-
             };
         }
     }
@@ -9178,80 +9165,6 @@ void TdApi::processRspQryInvestorProdSPBMDetail(Task* task)
 		delete task_error;
 	}
 	this->onRspQryInvestorProdSPBMDetail(data, error, task->task_id, task->task_last);
-};
-
-void TdApi::processRspQryRCAMSInterParameter(Task* task)
-{
-	gil_scoped_acquire acquire;
-	dict data;
-	if (task->task_data)
-	{
-		CThostFtdcRCAMSInterParameterField* task_data = (CThostFtdcRCAMSInterParameterField*)task->task_data;
-		data["TradingDay"] = toUtf(task_data->TradingDay);
-		data["ExchangeID"] = toUtf(task_data->ExchangeID);
-		data["ProductGroupID"] = toUtf(task_data->ProductGroupID);
-		data["Priority"] = task_data->Priority;
-		data["CreditRate"] = task_data->CreditRate;
-		data["CombProduct1"] = toUtf(task_data->CombProduct1);
-		data["CombProduct2"] = toUtf(task_data->CombProduct2);
-		delete task_data;
-	}
-	dict error;
-	if (task->task_error)
-	{
-		CThostFtdcRspInfoField* task_error = (CThostFtdcRspInfoField*)task->task_error;
-		error["ErrorID"] = task_error->ErrorID;
-		error["ErrorMsg"] = toUtf(task_error->ErrorMsg);
-		delete task_error;
-	}
-	this->onRspQryRCAMSInterParameter(data, error, task->task_id, task->task_last);
-};
-
-void TdApi::processRspQryInvestorProdRCAMSMargin(Task* task)
-{
-	gil_scoped_acquire acquire;
-	dict data;
-	if (task->task_data)
-	{
-		CThostFtdcInvestorProdRCAMSMarginField* task_data = (CThostFtdcInvestorProdRCAMSMarginField*)task->task_data;
-		data["ExchangeID"] = toUtf(task_data->ExchangeID);
-		data["BrokerID"] = toUtf(task_data->BrokerID);
-		data["InvestorID"] = toUtf(task_data->InvestorID);
-		data["CombProductID"] = toUtf(task_data->CombProductID);
-		data["HedgeFlag"] = task_data->HedgeFlag;
-		data["ProductGroupID"] = toUtf(task_data->ProductGroupID);
-		data["RiskBeforeDiscount"] = task_data->RiskBeforeDiscount;
-		data["IntraInstrRisk"] = task_data->IntraInstrRisk;
-		data["BPosRisk"] = task_data->BPosRisk;
-		data["SPosRisk"] = task_data->SPosRisk;
-		data["IntraProdRisk"] = task_data->IntraProdRisk;
-		data["NetRisk"] = task_data->NetRisk;
-		data["InterProdRisk"] = task_data->InterProdRisk;
-		data["ShortOptRiskAdj"] = task_data->ShortOptRiskAdj;
-		data["OptionRoyalty"] = task_data->OptionRoyalty;
-		data["MMSACloseFrozenMargin"] = task_data->MMSACloseFrozenMargin;
-		data["CloseCombFrozenMargin"] = task_data->CloseCombFrozenMargin;
-		data["CloseFrozenMargin"] = task_data->CloseFrozenMargin;
-		data["MMSAOpenFrozenMargin"] = task_data->MMSAOpenFrozenMargin;
-		data["DeliveryOpenFrozenMargin"] = task_data->DeliveryOpenFrozenMargin;
-		data["OpenFrozenMargin"] = task_data->OpenFrozenMargin;
-		data["UseFrozenMargin"] = task_data->UseFrozenMargin;
-		data["MMSAExchMargin"] = task_data->MMSAExchMargin;
-		data["DeliveryExchMargin"] = task_data->DeliveryExchMargin;
-		data["CombExchMargin"] = task_data->CombExchMargin;
-		data["ExchMargin"] = task_data->ExchMargin;
-		data["UseMargin"] = task_data->UseMargin;
-		delete task_data;
-	}
-	dict error;
-	if (task->task_error)
-	{
-		CThostFtdcRspInfoField* task_error = (CThostFtdcRspInfoField*)task->task_error;
-		error["ErrorID"] = task_error->ErrorID;
-		error["ErrorMsg"] = toUtf(task_error->ErrorMsg);
-		delete task_error;
-	}
-	this->onRspQryInvestorProdRCAMSMargin(data, error, task->task_id, task->task_last);
 };
 
 ///-------------------------------------------------------------------------------------
