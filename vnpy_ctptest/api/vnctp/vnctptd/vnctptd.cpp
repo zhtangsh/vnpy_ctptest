@@ -2620,27 +2620,6 @@ void TdApi::OnRspQryInvestorProdSPBMDetail(CThostFtdcInvestorProdSPBMDetailField
 	this->task_queue.push(task);
 };
 
-void TdApi::OnRspQryInvestorCommoditySPMMMargin(CThostFtdcInvestorCommoditySPMMMarginField* pInvestorCommoditySPMMMargin, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
-{
-	Task task = Task();
-	task.task_name = ONRSPQRYINVESTORCOMMODITYSPMMMARGIN;
-	if (pInvestorCommoditySPMMMargin)
-	{
-		CThostFtdcInvestorCommoditySPMMMarginField* task_data = new CThostFtdcInvestorCommoditySPMMMarginField();
-		*task_data = *pInvestorCommoditySPMMMargin;
-		task.task_data = task_data;
-	}
-	if (pRspInfo)
-	{
-		CThostFtdcRspInfoField* task_error = new CThostFtdcRspInfoField();
-		*task_error = *pRspInfo;
-		task.task_error = task_error;
-	}
-	task.task_id = nRequestID;
-	task.task_last = bIsLast;
-	this->task_queue.push(task);
-};
-
 void TdApi::OnRspQryInvestorCommodityGroupSPMMMargin(CThostFtdcInvestorCommodityGroupSPMMMarginField* pInvestorCommodityGroupSPMMMargin, CThostFtdcRspInfoField* pRspInfo, int nRequestID, bool bIsLast)
 {
 	Task task = Task();
