@@ -3464,18 +3464,6 @@ void TdApi::processTask()
 				break;
 			}
 
-			case ONRSPQRYINVESTORCOMMODITYSPMMMARGIN:
-			{
-				this->processRspQryInvestorCommoditySPMMMargin(&task);
-				break;
-			}
-
-			case ONRSPQRYINVESTORCOMMODITYGROUPSPMMMARGIN:
-			{
-				this->processRspQryInvestorCommodityGroupSPMMMargin(&task);
-				break;
-			}
-
 			case ONRSPQRYSPMMINSTPARAM:
 			{
 				this->processRspQrySPMMInstParam(&task);
@@ -9238,90 +9226,6 @@ void TdApi::processRspQryInvestorProdSPBMDetail(Task* task)
 		delete task_error;
 	}
 	this->onRspQryInvestorProdSPBMDetail(data, error, task->task_id, task->task_last);
-};
-
-void TdApi::processRspQryInvestorCommoditySPMMMargin(Task* task)
-{
-	gil_scoped_acquire acquire;
-	dict data;
-	if (task->task_data)
-	{
-		CThostFtdcInvestorCommoditySPMMMarginField* task_data = (CThostFtdcInvestorCommoditySPMMMarginField*)task->task_data;
-		data["ExchangeID"] = toUtf(task_data->ExchangeID);
-		data["BrokerID"] = toUtf(task_data->BrokerID);
-		data["InvestorID"] = toUtf(task_data->InvestorID);
-		data["CommodityID"] = toUtf(task_data->CommodityID);
-		data["MarginBeforeDiscount"] = task_data->MarginBeforeDiscount;
-		data["MarginNoDiscount"] = task_data->MarginNoDiscount;
-		data["LongPosRisk"] = task_data->LongPosRisk;
-		data["LongOpenFrozenRisk"] = task_data->LongOpenFrozenRisk;
-		data["LongCloseFrozenRisk"] = task_data->LongCloseFrozenRisk;
-		data["ShortPosRisk"] = task_data->ShortPosRisk;
-		data["ShortOpenFrozenRisk"] = task_data->ShortOpenFrozenRisk;
-		data["ShortCloseFrozenRisk"] = task_data->ShortCloseFrozenRisk;
-		data["IntraCommodityRate"] = task_data->IntraCommodityRate;
-		data["OptionDiscountRate"] = task_data->OptionDiscountRate;
-		data["PosDiscount"] = task_data->PosDiscount;
-		data["OpenFrozenDiscount"] = task_data->OpenFrozenDiscount;
-		data["NetRisk"] = task_data->NetRisk;
-		data["CloseFrozenMargin"] = task_data->CloseFrozenMargin;
-		data["FrozenCommission"] = task_data->FrozenCommission;
-		data["Commission"] = task_data->Commission;
-		data["FrozenCash"] = task_data->FrozenCash;
-		data["CashIn"] = task_data->CashIn;
-		data["StrikeFrozenMargin"] = task_data->StrikeFrozenMargin;
-		delete task_data;
-	}
-	dict error;
-	if (task->task_error)
-	{
-		CThostFtdcRspInfoField* task_error = (CThostFtdcRspInfoField*)task->task_error;
-		error["ErrorID"] = task_error->ErrorID;
-		error["ErrorMsg"] = toUtf(task_error->ErrorMsg);
-		delete task_error;
-	}
-	this->onRspQryInvestorCommoditySPMMMargin(data, error, task->task_id, task->task_last);
-};
-
-void TdApi::processRspQryInvestorCommodityGroupSPMMMargin(Task* task)
-{
-	gil_scoped_acquire acquire;
-	dict data;
-	if (task->task_data)
-	{
-		CThostFtdcInvestorCommodityGroupSPMMMarginField* task_data = (CThostFtdcInvestorCommodityGroupSPMMMarginField*)task->task_data;
-		data["ExchangeID"] = toUtf(task_data->ExchangeID);
-		data["BrokerID"] = toUtf(task_data->BrokerID);
-		data["InvestorID"] = toUtf(task_data->InvestorID);
-		data["CommodityGroupID"] = toUtf(task_data->CommodityGroupID);
-		data["MarginBeforeDiscount"] = task_data->MarginBeforeDiscount;
-		data["MarginNoDiscount"] = task_data->MarginNoDiscount;
-		data["LongRisk"] = task_data->LongRisk;
-		data["ShortRisk"] = task_data->ShortRisk;
-		data["CloseFrozenMargin"] = task_data->CloseFrozenMargin;
-		data["InterCommodityRate"] = task_data->InterCommodityRate;
-		data["MiniMarginRatio"] = task_data->MiniMarginRatio;
-		data["AdjustRatio"] = task_data->AdjustRatio;
-		data["IntraCommodityDiscount"] = task_data->IntraCommodityDiscount;
-		data["InterCommodityDiscount"] = task_data->InterCommodityDiscount;
-		data["ExchMargin"] = task_data->ExchMargin;
-		data["InvestorMargin"] = task_data->InvestorMargin;
-		data["FrozenCommission"] = task_data->FrozenCommission;
-		data["Commission"] = task_data->Commission;
-		data["FrozenCash"] = task_data->FrozenCash;
-		data["CashIn"] = task_data->CashIn;
-		data["StrikeFrozenMargin"] = task_data->StrikeFrozenMargin;
-		delete task_data;
-	}
-	dict error;
-	if (task->task_error)
-	{
-		CThostFtdcRspInfoField* task_error = (CThostFtdcRspInfoField*)task->task_error;
-		error["ErrorID"] = task_error->ErrorID;
-		error["ErrorMsg"] = toUtf(task_error->ErrorMsg);
-		delete task_error;
-	}
-	this->onRspQryInvestorCommodityGroupSPMMMargin(data, error, task->task_id, task->task_last);
 };
 
 void TdApi::processRspQrySPMMInstParam(Task* task)

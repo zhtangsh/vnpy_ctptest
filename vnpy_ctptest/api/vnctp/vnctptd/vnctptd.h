@@ -898,10 +898,6 @@ public:
 
 	void processRspQryInvestorProdSPBMDetail(Task* task);
 
-	void processRspQryInvestorCommoditySPMMMargin(Task* task);
-
-	void processRspQryInvestorCommodityGroupSPMMMargin(Task* task);
-
 	void processRspQrySPMMInstParam(Task* task);
 
 	void processRspQrySPMMProductParam(Task* task);
